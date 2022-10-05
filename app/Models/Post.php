@@ -18,4 +18,11 @@ class Post extends Model
 
 
     public $someProperty;
+
+    // posts - потому что одни (категория) ко многим (посты)
+    public function category() 
+    {
+
+        return $this->belongsTo(Post::class, 'category_id', 'id');
+    }
 }
