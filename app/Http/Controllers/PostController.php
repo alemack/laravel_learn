@@ -27,7 +27,9 @@ class PostController extends Controller
     {
         $data = request()->validate([
             // ключ => правило (необязательно)
-            'title'=>'string',
+            // required - поле должно быть заполнено,
+            // при не заполнении автоматиски создаст и покажет пользователю сообщение об ошибке
+            'title'=>'required|string',
             'content'=>'string',
             'image'=>'string',
             'category_id' => '',

@@ -5,22 +5,44 @@
     @csrf 
   <div class="form-group">
     <label for="title">Title</label>
-    <input type="text" name="title" class="form-control" id="Title"  placeholder="Title">
+    <!-- value="{{old('title')}}" -позволяет правильные значения в полях оставлять
+
+    выводит сообщение об ошибке заполнения поля
+    @error('title')
+    <p class="text-danger">{{$message}}</p>
+    @enderror
+   -->
+    <input
+    value="{{old('title')}}"
+    type="text" name="title" class="form-control" id="Title"  placeholder="Title">
+    @error('title')
+    <p class="text-danger">{{$message}}</p>
+    @enderror
   </div>
   <div class="form-group">
     <label for="content">Content</label>
     <textarea name="content" class="form-control" id="content"  placeholder="Content"></textarea>
+    @error('content')
+    <p class="text-danger">{{$message}}</p>
+    @enderror
   </div>
   <div class="form-group">
     <label for="image">Image</label>
-    <input type="text" name="image" class="form-control" id="image"  placeholder="Image">
+    <input 
+    value="{{old('image')}}"
+    type="text" name="image" class="form-control" id="image"  placeholder="Image">
+    @error('image')
+    <p class="text-danger">{{$message}}</p>
+    @enderror
   </div>
 
   <div class="form_group">
     <label for="category">Category</label>
     <select class="form-control" id="category" name="category_id">
       @foreach($categories as $category)
-      <option value="{{$category->id}}">{{$category->title}}</option>
+      <option 
+      {{old('category_id') == $category->id ? 'selected' : ''}}
+      value="{{$category->id}}">{{$category->title}}</option>
       @endforeach
     </select>
   </div>
