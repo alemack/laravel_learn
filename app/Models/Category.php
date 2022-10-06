@@ -13,6 +13,7 @@ class Category extends Model
     public function posts() 
     {
 
+        // связали category_id из Post с id из Category
         return $this->hasMany(Post::class, 'category_id', 'id');
     }
 }
