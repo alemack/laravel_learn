@@ -9,11 +9,8 @@ class Category extends Model
 {
     use HasFactory;
 
-    // posts - потому что одни (категория) ко многим (посты)
-    public function posts() 
-    {
 
-        // связали category_id из Post с id из Category
-        return $this->hasMany(Post::class, 'category_id', 'id');
+    public function posts() {
+        return $this->hasMany(Post::class);
     }
 }
