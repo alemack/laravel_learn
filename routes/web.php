@@ -6,7 +6,7 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Post\IndexController;
 use App\Http\Controllers\Post\CreateController;
-use App\Http\Controllers\Post\DeleteController;
+use App\Http\Controllers\Post\DestroyController;
 use App\Http\Controllers\Post\EditController;
 use App\Http\Controllers\Post\ShowController;
 use App\Http\Controllers\Post\StoreController;
