@@ -1,21 +1,23 @@
 <?php
 
+use PhpParser\Node\Expr\FuncCall;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MainController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\AboutController;
-use App\Http\Controllers\MainController;
+use SebastianBergmann\Environment\Runtime;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\Admin\Post\AdminController;
-use App\Http\Controllers\Post\IndexController;
-use App\Http\Controllers\Post\CreateController;
-use App\Http\Controllers\Post\DestroyController;
 use App\Http\Controllers\Post\EditController;
 use App\Http\Controllers\Post\ShowController;
+use App\Http\Controllers\Post\IndexController;
 use App\Http\Controllers\Post\StoreController;
-use App\Http\Controllers\Post\UpdateController;
 
-use Illuminate\Support\Facades\Route;
-use PhpParser\Node\Expr\FuncCall;
-use SebastianBergmann\Environment\Runtime;
+use App\Http\Controllers\Post\CreateController;
+use App\Http\Controllers\Post\UpdateController;
+use App\Http\Controllers\Post\DestroyController;
+use App\Http\Controllers\Admin\Post\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,9 +30,8 @@ use SebastianBergmann\Environment\Runtime;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Auth::routes();
+Route::get('/', [HomeController::class, 'index']);
 
 // сгруппировали роуты под одним namespace
 Route::group(['namespace' => 'Post'], function() {
@@ -70,5 +71,9 @@ Route::get('/about', [AboutController::class, 'index'])->name('about.index');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
