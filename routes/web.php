@@ -4,6 +4,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\Admin\Post\AdminController;
 use App\Http\Controllers\Post\IndexController;
 use App\Http\Controllers\Post\CreateController;
 use App\Http\Controllers\Post\DestroyController;
@@ -47,17 +48,13 @@ Route::delete('/posts/{post}', [DestroyController::class, '__invoke'])->name('po
 
 });
 
-// Route::get('/posts', [PostController::class, 'index'])->name('post.index');
+Route::group(['namespace' => 'Admin', 'prefix'=>'admin'], function() {
+    Route::group(['namespace' => 'Post'], function () {
+        Route::get('/post', [AdminController::class, '__invoke'])->name('admin.post.index');
+    });
+});
 
-// Route::get('/posts/create', [PostController::class, 'create'])->name('post.create');
-// Route::post('/posts', [PostController::class, 'store'])->name('post.store');
 
-// Route::get('/posts/{post}', [PostController::class, 'show'])->name('post.show');
-
-// Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('post.edit');
-// Route::patch('/posts/{post}', [PostController::class, 'update'])->name('post.update');
-
-// Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('post.delete');
 
 
 Route::get('posts/update', [PostController::class, 'update']);
