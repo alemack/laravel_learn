@@ -31,7 +31,7 @@ use App\Http\Controllers\Admin\Post\AdminController;
 */
 
 Auth::routes();
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // сгруппировали роуты под одним namespace
 Route::group(['namespace' => 'Post'], function() {
@@ -49,7 +49,7 @@ Route::delete('/posts/{post}', [DestroyController::class, '__invoke'])->name('po
 
 });
 
-Route::group(['namespace' => 'Admin', 'prefix'=>'admin'], function() {
+Route::group(['namespace' => 'Admin', 'prefix'=>'admin', 'middleware'=> 'admin'], function() {
     Route::group(['namespace' => 'Post'], function () {
         Route::get('/post', [AdminController::class, '__invoke'])->name('admin.post.index');
     });
@@ -68,12 +68,12 @@ Route::get('/contacts', [ContactController::class, 'index'])->name('contact.inde
 Route::get('/about', [AboutController::class, 'index'])->name('about.index');
 //Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// Auth::routes();
+// // Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
