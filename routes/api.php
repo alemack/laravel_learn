@@ -46,15 +46,4 @@ Route::group(['namespace' => 'Post', 'middleware' => 'jwt.auth'], function() {
     Route::get('/posts/{post}/edit', [EditController::class, '__invoke']);
     Route::patch('/posts/{post}', [UpdateController::class, '__invoke']);
     Route::delete('/posts/{post}', [DestroyController::class, '__invoke']);
-
-
     });
-
-// Route::controller(IndexController::class)->group(['middleware'=>'jwt.auth'], function () {
-//     Route::get('posts', '__invoke');
-
-// });
-
-// Route::group(['namespace'=>'Post', 'middleware'=>'jwt.auth'], function() {
-//     Route::get('/posts', 'IndexController');
-// });

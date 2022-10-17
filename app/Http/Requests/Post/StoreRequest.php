@@ -28,8 +28,12 @@ class StoreRequest extends FormRequest
             'content'=>'string',
             'image'=>'string',
             'likes'=>'',
-            'category_id' => '',
+            'category' => '',
             'tags' => '',
+            // зайди в массив тегов (tags), пройдись по всем элементам массива (.*)
+            // и в каждом возьми title (.title)
+            'tags.*.title'=> '',
+            'tags.*.title'=> '',
         ];
     }
 }
