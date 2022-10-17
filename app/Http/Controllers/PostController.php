@@ -20,10 +20,10 @@ class PostController extends Controller
     {
         $categories = Category::all();
         $tags = Tag::all();
-        return view('post.create', compact('categories', 'tags'));    
+        return view('post.create', compact('categories', 'tags'));
     }
 
-    public function store() 
+    public function store()
     {
         $data = request()->validate([
             // ключ => правило (необязательно)
@@ -43,22 +43,22 @@ class PostController extends Controller
         // если () -то это запрос в базу данных, а если без то вернет  класса Tag
         // привязать к посту post такие в таблице tags такие теги $tags
         $post->tags()->attach($tags);
-        
+
         return redirect()->route('post.index');
     }
 
-    public function show(Post $post) 
+    public function show(Post $post)
     {
         // $post = Post::findOrFail($id);
 
         return view('post.show', compact('post'));
     }
 
-    public function edit(Post $post) 
+    public function edit(Post $post)
     {
         $categories = Category::all();
         $tags = Tag::all();
-        return view('post.edit', compact('post', 'categories', 'tags'));   
+        return view('post.edit', compact('post', 'categories', 'tags'));
     }
 
     public function update(Post $post)
@@ -85,7 +85,7 @@ class PostController extends Controller
         return redirect()->route('post.show', $post->id);
     }
 
-    public function destroy(Post $post) 
+    public function destroy(Post $post)
     {
         $post->delete();
 
@@ -93,7 +93,7 @@ class PostController extends Controller
     }
 
     /*
-    public function create() 
+    public function create()
         $postsArr = [
             [
                 'title' => ' title of post',
@@ -111,13 +111,13 @@ class PostController extends Controller
             ],
         ];
 
-        
+
         // Post::create([ 'title' => ' title of post',
         // 'content' => 'lorem impsum',
         // 'image' => 'image.jpg',
         // 'likes' => 20,
         // 'is_published' => 1,]); // массив в качестве аргумента
-               
+
 
         foreach ($postsArr as $item) {
             Post::create($item);
@@ -150,19 +150,19 @@ class PostController extends Controller
         // так никто не делает при реальных проектах
         // hard delete
 
-        
+
         // $post = Post::find(4);
         // $post->delete();
-        // dd('del'); 
-        
+        // dd('del');
+
 
         // должна быть возможность восстановить данные
         // soft delete
-  
+
         // $post = Post::find(2);
         // $post->delete();
         // dd('del');
-        
+
         // восстановлени
         $post = Post::withTrashed()->find(2);
         $post->restore();
@@ -174,9 +174,9 @@ class PostController extends Controller
 
     // firstOrCreate
     // достать какую-то запись, то создать такую запись
-    
-    // updateOrCreate 
-    // обновить какую-то запись или создать 
+
+    // updateOrCreate
+    // обновить какую-то запись или создать
 
     public function firstOrCreate() {
         $post = Post::find(1);
@@ -198,7 +198,7 @@ class PostController extends Controller
             'image' => 'some',
             'likes' => 50000,
             'is_published' => 1,
-        ]); 
+        ]);
         dump($myPost->content);
         dd('end');
     }
